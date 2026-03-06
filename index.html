@@ -934,7 +934,7 @@
                 <p class="subtitle">Add behavior to your objects with visual or C# scripts</p>
 
                 <div class="section">
-                    <h2>Two Scripting Systems</h2>
+                    <h2>Three Scripting Systems</h2>
 
                     <div class="grid">
                         <div class="grid-item">
@@ -947,6 +947,12 @@
                             <h4>C# Scripting</h4>
                             <p>Full programming language. Create complex game logic. Requires programming knowledge.</p>
                             <p style="margin-top: 12px; font-size: 13px; color: var(--text-tertiary);">Full control, unlimited power</p>
+                        </div>
+
+                        <div class="grid-item">
+                            <h4>UI & GUI Scripting</h4>
+                            <p>Create interactive HTML/CSS overlays. Control from HTML and reference game objects.</p>
+                            <p style="margin-top: 12px; font-size: 13px; color: var(--text-tertiary);">Web-based interface for your game</p>
                         </div>
                     </div>
                 </div>
@@ -1029,7 +1035,7 @@
                 </div>
 
                 <div class="section">
-                    <h2>C# Scripting</h2>
+                    <h2>C# Scripting - Complete API Reference</h2>
 
                     <p>Select object → Properties → Script → "⚙ C# Script"</p>
 
@@ -1048,15 +1054,578 @@
     }
 }</code></pre>
 
-                    <h3>Available APIs</h3>
+                    <h2>API Reference with Examples</h2>
+
+                    <h3>1. Transform API</h3>
+                    <p>Control object position, rotation, and scale.</p>
+
+                    <div class="card">
+                        <div class="card-title">Position</div>
+                        <div class="card-desc">Get/set object location in 3D space</div>
+                    </div>
+                    <pre><code>// Get current position
+Vector3 pos = this.transform.position;
+Debug.Log("Position: " + pos.x + ", " + pos.y + ", " + pos.z);
+
+// Set new position
+this.transform.position = new Vector3(0, 5, 10);
+
+// Move relative to current position
+this.transform.position += new Vector3(1, 0, 0);</code></pre>
+
+                    <div class="card">
+                        <div class="card-title">Rotation</div>
+                        <div class="card-desc">Get/set object rotation in degrees</div>
+                    </div>
+                    <pre><code>// Get current rotation
+Vector3 rot = this.transform.rotation;
+
+// Rotate object (in degrees)
+this.transform.rotation = new Vector3(45, 90, 0);
+
+// Spin object continuously
+this.transform.rotation += new Vector3(0, 2, 0);</code></pre>
+
+                    <div class="card">
+                        <div class="card-title">Scale</div>
+                        <div class="card-desc">Get/set object size</div>
+                    </div>
+                    <pre><code>// Get current scale
+Vector3 size = this.transform.scale;
+
+// Double the size
+this.transform.scale = new Vector3(2, 2, 2);
+
+// Make it smaller
+this.transform.scale = new Vector3(0.5, 0.5, 0.5);</code></pre>
+
+                    <h3>2. Vector3 API</h3>
+                    <p>3D coordinate system with X, Y, Z values.</p>
+
+                    <pre><code>// Create a vector
+Vector3 forward = new Vector3(0, 0, 1);
+Vector3 up = new Vector3(0, 1, 0);
+
+// Vector math
+Vector3 combined = forward + up;
+Vector3 scaled = forward * 2;
+
+// Useful constants
+Vector3 zero = Vector3.Zero;          // (0, 0, 0)
+Vector3 one = Vector3.One;            // (1, 1, 1)
+Vector3 right = Vector3.Right;        // (1, 0, 0)
+Vector3 forward = Vector3.Forward;    // (0, 0, 1)
+Vector3 up = Vector3.Up;              // (0, 1, 0)</code></pre>
+
+                    <h3>3. Input API</h3>
+                    <p>Handle keyboard and mouse input from players.</p>
+
+                    <div class="card">
+                        <div class="card-title">Key Detection</div>
+                        <div class="card-desc">Check if specific keys are pressed</div>
+                    </div>
+                    <pre><code>// Detect key press (once per frame when held)
+if (Input.GetKeyDown("space")) {
+    Debug.Log("Space pressed!");
+}
+
+// Detect key being held
+if (Input.GetKey("w")) {
+    this.transform.position.z += 1;
+}
+
+// Detect key release
+if (Input.GetKeyUp("space")) {
+    Debug.Log("Space released!");
+}</code></pre>
+
+                    <div class="card">
+                        <div class="card-title">Movement Input</div>
+                        <div class="card-desc">Handle WASD movement and arrow keys</div>
+                    </div>
+                    <pre><code>public float moveSpeed = 5f;
+
+public void Update() {
+    // Get input
+    float forward = 0;
+    float right = 0;
+    
+    if (Input.GetKey("w")) forward += 1;
+    if (Input.GetKey("s")) forward -= 1;
+    if (Input.GetKey("a")) right -= 1;
+    if (Input.GetKey("d")) right += 1;
+    
+    // Apply movement
+    Vector3 movement = (Vector3.Forward * forward + Vector3.Right * right) * moveSpeed;
+    this.transform.position += movement * Time.deltaTime;
+}</code></pre>
+
+                    <h3>4. Time API</h3>
+                    <p>Frame timing and delta time for smooth animations.</p>
+
+                    <pre><code>// Time since last frame (smooth animation)
+public void Update() {
+    float speed = 5f;
+    this.transform.position.x += speed * Time.deltaTime;
+}
+
+// Get total time since game start
+float elapsed = Time.totalTime;
+
+// Get current frame rate
+int fps = Time.frameRate;</code></pre>
+
+                    <h3>5. Debug API</h3>
+                    <p>Log messages to the console for debugging.</p>
+
+                    <pre><code>// Simple log
+Debug.Log("Hello!");
+
+// Log with variables
+Debug.Log("Position: " + this.transform.position);
+
+// Log warnings (yellow)
+Debug.LogWarning("Be careful!");
+
+// Log errors (red)
+Debug.LogError("Something went wrong!");</code></pre>
+
+                    <h3>6. GameObject API</h3>
+                    <p>Access and manipulate the current game object.</p>
+
+                    <pre><code>// Get object name
+string name = this.gameObject.name;
+
+// Enable/disable object
+this.gameObject.SetActive(true);
+this.gameObject.SetActive(false);
+
+// Destroy this object
+GameObject.Destroy(this.gameObject);</code></pre>
+
+                    <h2>Complete Script Examples</h2>
+
+                    <h3>Example 1: Door Opening Script</h3>
+                    <pre><code>public class DoorScript : GameBehavior {
+    public float openY = 5f;
+    public float closeY = 0f;
+    public float speed = 2f;
+    private bool isOpen = false;
+
+    public void Start() {
+        // Door starts closed
+        isOpen = false;
+    }
+
+    public void Update() {
+        // Press "e" to toggle door
+        if (Input.GetKeyDown("e")) {
+            isOpen = !isOpen;
+        }
+
+        // Smoothly move door
+        float targetY = isOpen ? openY : closeY;
+        float current = this.transform.position.y;
+        this.transform.position.y = current + (targetY - current) * speed * Time.deltaTime;
+    }
+}</code></pre>
+
+                    <h3>Example 2: Rotating Platform</h3>
+                    <pre><code>public class RotatingPlatform : GameBehavior {
+    public float rotationSpeed = 45f; // degrees per second
+
+    public void Update() {
+        // Rotate around Y axis (spin)
+        this.transform.rotation += new Vector3(0, rotationSpeed * Time.deltaTime, 0);
+    }
+}</code></pre>
+
+                    <h3>Example 3: Collectible Item</h3>
+                    <pre><code>public class Collectible : GameBehavior {
+    public void Update() {
+        // Float up and down
+        float bobHeight = 0.5f;
+        float bobSpeed = 2f;
+        
+        Vector3 pos = this.transform.position;
+        pos.y += bobHeight * Time.deltaTime * bobSpeed;
+        this.transform.position = pos;
+    }
+}</code></pre>
+
+                    <h3>Example 4: Color Changing Light</h3>
+                    <pre><code>public class ColorCycler : GameBehavior {
+    public void Update() {
+        // Cycle through colors
+        float time = Time.totalTime;
+        float r = (sin(time) + 1) / 2; // 0 to 1
+        float g = (sin(time + 2) + 1) / 2;
+        float b = (sin(time + 4) + 1) / 2;
+        
+        // This would set color if your object has that method
+        Debug.Log("RGB: " + r + ", " + g + ", " + b);
+    }
+}</code></pre>
+
+                    <h3>Example 5: Player Controller (Advanced)</h3>
+                    <pre><code>public class PlayerController : GameBehavior {
+    public float moveSpeed = 5f;
+    public float jumpForce = 10f;
+    private float verticalVelocity = 0f;
+    private float gravity = 9.81f;
+
+    public void Update() {
+        // Handle movement
+        float forward = 0;
+        float right = 0;
+        
+        if (Input.GetKey("w")) forward = 1;
+        if (Input.GetKey("s")) forward = -1;
+        if (Input.GetKey("a")) right = -1;
+        if (Input.GetKey("d")) right = 1;
+
+        Vector3 moveDir = Vector3.Forward * forward + Vector3.Right * right;
+        this.transform.position += moveDir * moveSpeed * Time.deltaTime;
+
+        // Handle jumping
+        if (Input.GetKeyDown("space")) {
+            verticalVelocity = jumpForce;
+        }
+
+        // Apply gravity
+        verticalVelocity -= gravity * Time.deltaTime;
+        this.transform.position.y += verticalVelocity * Time.deltaTime;
+
+        // Reset Y if hit ground
+        if (this.transform.position.y < 0) {
+            this.transform.position.y = 0;
+            verticalVelocity = 0;
+        }
+    }
+}</code></pre>
+
+                    <h3>Example 6: Timer and Event</h3>
+                    <pre><code>public class TimedEvent : GameBehavior {
+    public float triggerTime = 5f;
+    private bool triggered = false;
+
+    public void Update() {
+        if (!triggered && Time.totalTime >= triggerTime) {
+            triggered = true;
+            Debug.Log("Event triggered after " + triggerTime + " seconds!");
+            
+            // Do something here
+            // this.gameObject.SetActive(false);
+        }
+    }
+}</code></pre>
+                </div>
+
+                <div class="section">
+                    <h2>UI & GUI Scripting</h2>
+                    <p>Create interactive web-based GUI overlays that can reference and control in-game objects.</p>
+
+                    <h3>What is UI Scripting?</h3>
+                    <p>UI Scripts let you build HTML/CSS user interfaces that appear as overlays on top of your game. These can:</p>
                     <ul>
-                        <li><strong>GameObject</strong> — Current object</li>
-                        <li><strong>Transform</strong> — Position, rotation, scale</li>
-                        <li><strong>Vector3</strong> — 3D coordinates</li>
-                        <li><strong>Input</strong> — Keyboard input</li>
-                        <li><strong>Time</strong> — Frame timing</li>
-                        <li><strong>Debug</strong> — Logging</li>
+                        <li>Display score, health, inventory</li>
+                        <li>Show interactive buttons and menus</li>
+                        <li>React to game events</li>
+                        <li>Control in-game objects from the UI</li>
+                        <li>Display real-time game data</li>
                     </ul>
+
+                    <h3>UI Script Structure</h3>
+                    <p>UI Scripts have three parts:</p>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>HTML</h4>
+                        <p>The structure of your UI elements</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>CSS</h4>
+                        <p>Styling and layout of your UI</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>JavaScript</h4>
+                        <p>Interactive logic and game object references</p>
+                    </div>
+
+                    <h3>Basic UI Script Example</h3>
+                    <pre><code>&lt;!-- HTML --&gt;
+&lt;div id="ui-container"&gt;
+  &lt;h1&gt;Score: &lt;span id="score"&gt;0&lt;/span&gt;&lt;/h1&gt;
+  &lt;button id="start-btn"&gt;Start Game&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+&lt;style&gt;
+#ui-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+}
+&lt;/style&gt;
+
+&lt;!-- JavaScript --&gt;
+&lt;script&gt;
+class GameUI {
+  constructor() {
+    this.score = 0;
+    document.getElementById('start-btn').addEventListener('click', () => {
+      this.startGame();
+    });
+  }
+
+  startGame() {
+    // Reference game object
+    const door = GetGameObject('Door');
+    door.position.y = 10; // Open door
+  }
+
+  updateScore(points) {
+    this.score += points;
+    document.getElementById('score').textContent = this.score;
+  }
+}
+
+const ui = new GameUI();
+&lt;/script&gt;</code></pre>
+
+                    <h3>Referencing Game Objects</h3>
+                    <p>Use the <code>GetGameObject()</code> function to access and control in-game objects:</p>
+
+                    <pre><code>// Get object by name
+const door = GetGameObject('Door');
+
+// Read object properties
+console.log(door.position.x);
+console.log(door.rotation.y);
+
+// Modify object properties
+door.position.y = 10;        // Move up
+door.rotation.y = 90;        // Rotate
+door.visible = false;         // Hide
+
+// Call object methods
+door.setColor(255, 0, 0);    // Red
+door.destroy();              // Delete</code></pre>
+
+                    <h3>Game Object API Reference</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property/Method</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>position</code></td>
+                                <td>Vector3</td>
+                                <td>Object location {x, y, z}</td>
+                            </tr>
+                            <tr>
+                                <td><code>rotation</code></td>
+                                <td>Vector3</td>
+                                <td>Object rotation {x, y, z}</td>
+                            </tr>
+                            <tr>
+                                <td><code>scale</code></td>
+                                <td>Vector3</td>
+                                <td>Object size {x, y, z}</td>
+                            </tr>
+                            <tr>
+                                <td><code>visible</code></td>
+                                <td>Boolean</td>
+                                <td>Show/hide object</td>
+                            </tr>
+                            <tr>
+                                <td><code>color</code></td>
+                                <td>String</td>
+                                <td>Object color (hex or rgb)</td>
+                            </tr>
+                            <tr>
+                                <td><code>setColor(r, g, b)</code></td>
+                                <td>Method</td>
+                                <td>Set color with RGB values</td>
+                            </tr>
+                            <tr>
+                                <td><code>destroy()</code></td>
+                                <td>Method</td>
+                                <td>Delete the object</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>UI Scripting Example: Score Display</h3>
+                    <pre><code>&lt;div id="scoreboard"&gt;
+  &lt;div class="score-item"&gt;
+    &lt;label&gt;Score:&lt;/label&gt;
+    &lt;span id="score-value"&gt;0&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="score-item"&gt;
+    &lt;label&gt;Health:&lt;/label&gt;
+    &lt;div id="health-bar"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+#scoreboard {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  border: 2px solid #ff6b2b;
+  border-radius: 8px;
+  color: white;
+  font-family: Arial;
+}
+
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  min-width: 150px;
+}
+
+#health-bar {
+  width: 100px;
+  height: 20px;
+  background: #333;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.health-fill {
+  height: 100%;
+  background: #22c55e;
+  transition: width 0.3s;
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+class Scoreboard {
+  constructor() {
+    this.score = 0;
+    this.health = 100;
+    this.updateDisplay();
+  }
+
+  addScore(points) {
+    this.score += points;
+    this.updateDisplay();
+  }
+
+  setHealth(hp) {
+    this.health = Math.max(0, Math.min(100, hp));
+    this.updateDisplay();
+  }
+
+  updateDisplay() {
+    document.getElementById('score-value').textContent = this.score;
+    
+    const healthPercent = (this.health / 100) * 100;
+    const healthBar = document.getElementById('health-bar');
+    healthBar.innerHTML = `&lt;div class="health-fill" style="width: ${healthPercent}%"&gt;&lt;/div&gt;`;
+  }
+}
+
+const scoreboard = new Scoreboard();
+
+// Update when player picks up item
+GetGameObject('Coin').onTouch = () => {
+  scoreboard.addScore(10);
+};
+&lt;/script&gt;</code></pre>
+
+                    <h3>UI Scripting Example: Interactive Menu</h3>
+                    <pre><code>&lt;div id="game-menu"&gt;
+  &lt;h2&gt;Game Menu&lt;/h2&gt;
+  &lt;button id="play-btn"&gt;Play&lt;/button&gt;
+  &lt;button id="settings-btn"&gt;Settings&lt;/button&gt;
+  &lt;button id="quit-btn"&gt;Quit&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+#game-menu {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  padding: 40px;
+  border-radius: 12px;
+  border: 2px solid #ff6b2b;
+  text-align: center;
+  color: white;
+  z-index: 1000;
+}
+
+#game-menu h2 {
+  margin: 0 0 30px 0;
+  font-size: 32px;
+}
+
+#game-menu button {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+  padding: 12px;
+  background: #ff6b2b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#game-menu button:hover {
+  background: #ff8c55;
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+class GameMenu {
+  constructor() {
+    document.getElementById('play-btn').addEventListener('click', () => this.play());
+    document.getElementById('settings-btn').addEventListener('click', () => this.settings());
+    document.getElementById('quit-btn').addEventListener('click', () => this.quit());
+  }
+
+  play() {
+    // Hide menu
+    document.getElementById('game-menu').style.display = 'none';
+    
+    // Enable player
+    const player = GetGameObject('Player');
+    player.visible = true;
+  }
+
+  settings() {
+    alert('Settings coming soon!');
+  }
+
+  quit() {
+    // Close game or restart
+    window.location.reload();
+  }
+}
+
+const menu = new GameMenu();
+&lt;/script&gt;</code></pre>
                 </div>
             </div>
 
