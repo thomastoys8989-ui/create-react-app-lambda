@@ -51,6 +51,16 @@
             font-weight: 800;
             margin-bottom: 32px;
             color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            flex-shrink: 0;
         }
 
         .nav {
@@ -249,7 +259,10 @@
 <body>
     <div class="app">
         <aside class="sidebar">
-            <div class="logo">📚 PrinterMake Dev</div>
+            <div class="logo">
+                <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA4VBMVEVHcEwSDw4SEA0PFBEQDw8SExMNDgwPGBYXDhAUDxATEhIQEA8VDg8QFhILHyAODw0PEA4OExANGBkODw0ODgwNDgwLKCkTEwsLKy4KLTALIyQgHQ0mEhsiDRcYFwsNDgwLDw0OEA0MEQ8NFhURDg4NDwwYDREQEQwMExEMGRgLKiwUFAwLISEdJCUMHR0gLTAWFgsNJSYYICElMTUYHR0vOj4fKCu/v7uytLHc3dkjJyc1Q0xmbGk0MjDIycbQ0s+lp6YqHxA0LQ2ioaFdYWFTWVmEiIro6eNMUVFYPDZ+f4I19pkgAAAAH3RSTlMA2egwAYj8EznzHpvA1Sdry1wqrN+Rd3+zzeHz/kO7pPhESwAAAfdJREFUOMtlk+l2okAQhRsUN9yXJJNkBpoWpSENCgJxRxOTzLz/A001IIvewzn8uF9XVVdXIZSpNZD7YvNF7MuDFrpXV+pQQ1NVBVQTJpUbu/7w/GYTQ9N1JZH4WC8dfzKXMYCvgKK0C0Eqv8wUyH1FERrZefDNpU1vgJqQxqg/mXEAahi4CECWpI4HsLnPSwCpBUKqgj98BjvxNYO6Li3kEXkSyQZR8AGwva3vUJyHmFRRq0NBhPvYMLd/946r5cC4iwaEcBeOY914C/b7wC4AtR6StVSqhjXKHGdJoOHqtY4R6uNEhLmMge85wWazWV0rFZCox1K99/cw/cIojDbpbZuoGf911T8e1+v193cUfR2+jod9mqSGmvEDAhBeDmtgPqJ/h491uMmAawp2cS+fu93nz892Bz+WpYiLBAI7nksdIwiI56r5NQQkz7mwjv0tYz7ZOsQjejY3cM3BwrIsIDQnYI6/8j0ASo1qCRYnMHZdlwXQi5XHrHkcYTqdjofwWIvFghNkafK5eD2dz+eTxV2QDO9dERNAozDVxMCQjxLM3dlMjKfuMQFKwxTbs1k8MKj+JwH0O7+dLlClcxsh8fOxbnTmc/0OEH4XFqON74B2o7R6kliuUZRuFrhamYxrWf/GcqN6t97Vbm8kvJxem8KoN8zt/9hmdL2SVK0iAAAAAElFTkSuQmCC" />
+                <span>Documentation</span>
+            </div>
             <nav class="nav">
                 <a class="nav-link active" data-page="home">Home</a>
                 <a class="nav-link" data-page="getting-started">Getting Started</a>
