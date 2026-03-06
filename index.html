@@ -3,25 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrinterMake Developer Documentation</title>
+    <title>PrinterMake Studio - Complete Documentation</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* Wrote by ThomasConway */
         :root {
-            --bg: #0a0a0c;
-            --bg-2: #111114;
-            --bg-3: #18181c;
+            --bg: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f0f2f5;
+            --text: #1a1a1a;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
             --accent: #ff6b2b;
-            --text: #fafafa;
-            --text-2: #a1a1aa;
-            --text-3: #52525b;
-            --line: #2a2a30;
+            --accent-light: rgba(255, 107, 43, 0.1);
+            --border: #e5e7eb;
+            --success: #22c55e;
+            --info: #3b82f6;
+            --warning: #f59e0b;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
         }
 
         body {
@@ -36,195 +44,70 @@
             min-height: 100vh;
         }
 
+        /* SIDEBAR */
         .sidebar {
             width: 280px;
-            background: var(--bg-2);
-            border-right: 1px solid var(--line);
-            padding: 24px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            padding: 24px 20px;
             position: fixed;
             height: 100vh;
             overflow-y: auto;
+            box-shadow: 1px 0 3px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 32px;
-            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-bottom: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 16px;
         }
 
         .logo-img {
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
         }
 
         .nav {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 2px;
         }
 
         .nav-link {
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-radius: 6px;
             text-decoration: none;
-            color: var(--text-2);
-            transition: all 0.2s;
+            color: var(--text-secondary);
+            transition: all 0.15s;
             border-left: 3px solid transparent;
             display: block;
             cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
         }
 
         .nav-link:hover {
-            background: var(--bg-3);
+            background: var(--bg-tertiary);
             color: var(--text);
         }
 
         .nav-link.active {
-            background: var(--bg-3);
+            background: var(--accent-light);
             color: var(--accent);
             border-left-color: var(--accent);
         }
 
+        /* CONTENT */
         .content {
             margin-left: 280px;
             flex: 1;
-            padding: 48px 64px;
-            max-width: 1200px;
-            margin-right: auto;
-        }
-
-        h1 {
-            font-size: 40px;
-            margin-bottom: 16px;
-            color: var(--text);
-        }
-
-        h2 {
-            font-size: 28px;
-            margin-top: 40px;
-            margin-bottom: 16px;
-            color: var(--text);
-        }
-
-        h3 {
-            font-size: 20px;
-            margin-top: 24px;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-
-        p {
-            margin-bottom: 16px;
-            color: var(--text-2);
-        }
-
-        code {
-            background: var(--bg-3);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--accent);
-            font-family: 'Monaco', monospace;
-            font-size: 14px;
-        }
-
-        pre {
-            background: var(--bg-2);
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 16px;
-            overflow-x: auto;
-            margin-bottom: 16px;
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            color: var(--text);
-        }
-
-        .code-block {
-            background: var(--bg-3);
-            border-left: 3px solid var(--accent);
-            padding: 16px;
-            border-radius: 4px;
-            margin: 16px 0;
-            font-family: 'Monaco', monospace;
-            font-size: 13px;
-            overflow-x: auto;
-        }
-
-        .section {
-            margin-bottom: 48px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 24px 0;
-        }
-
-        .feature-card {
-            background: var(--bg-2);
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 24px;
-        }
-
-        .feature-card h3 {
-            margin-top: 0;
-            color: var(--accent);
-        }
-
-        .step {
-            background: var(--bg-2);
-            border-left: 3px solid var(--accent);
-            padding: 16px;
-            margin: 16px 0;
-            border-radius: 4px;
-        }
-
-        ul, ol {
-            margin: 16px 0 16px 24px;
-        }
-
-        li {
-            margin-bottom: 8px;
-            color: var(--text-2);
-        }
-
-        a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
-        }
-
-        thead tr {
-            border-bottom: 2px solid var(--line);
-        }
-
-        tbody tr {
-            border-bottom: 1px solid var(--line);
-        }
-
-        th, td {
-            text-align: left;
-            padding: 8px;
+            padding: 48px 60px;
+            max-width: 1100px;
         }
 
         .page {
@@ -233,563 +116,1209 @@
 
         .page.active {
             display: block;
+            animation: fadeIn 0.3s;
         }
 
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-                padding: 16px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: var(--text);
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-intro {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 18px 20px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+        }
+
+        .section-intro p {
+            margin: 0;
+            color: var(--text);
+        }
+
+        /* CARDS & COMPONENTS */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* STEP BY STEP */
+        .step {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -18px;
+            top: 18px;
+            background: var(--accent);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .step h4 {
+            margin-top: 0;
+        }
+
+        .step p {
+            margin-bottom: 10px;
+        }
+
+        /* LISTS */
+        ul, ol {
+            margin: 16px 0 16px 24px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        /* CODE */
+        code {
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--accent);
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        pre {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        thead {
+            background: var(--bg-tertiary);
+            border-bottom: 2px solid var(--border);
+        }
+
+        th {
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s;
+        }
+
+        tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        td {
+            padding: 12px 16px;
+            color: var(--text-secondary);
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .grid-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .grid-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(255, 107, 43, 0.1);
+        }
+
+        .grid-item h4 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        /* BADGES */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-info {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+        }
+
+        .badge-success {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        /* CALLOUTS */
+        .callout {
+            border-left: 4px solid;
+            padding: 14px 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .callout-tip {
+            border-left-color: var(--info);
+            background: rgba(59, 130, 246, 0.05);
+            color: var(--text);
+        }
+
+        .callout-warning {
+            border-left-color: var(--warning);
+            background: rgba(245, 158, 11, 0.05);
+            color: var(--text);
+        }
+
+        .callout-success {
+            border-left-color: var(--success);
+            background: rgba(34, 197, 94, 0.05);
+            color: var(--text);
+        }
+
+        .callout strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .content {
+                margin-left: 0;
+                padding: 32px 40px;
             }
 
-            .content {
-                margin-left: 200px;
-                padding: 24px 32px;
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .app {
+                flex-direction: column;
             }
 
             h1 {
-                font-size: 28px;
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 24px 20px;
+            }
+
+            h1 {
+                font-size: 26px;
             }
 
             h2 {
                 font-size: 20px;
+            }
+
+            .sidebar {
+                padding: 16px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 10px 8px;
             }
         }
     </style>
 </head>
 <body>
     <div class="app">
+        <!-- SIDEBAR -->
         <aside class="sidebar">
             <div class="logo">
-                <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA4VBMVEVHcEwSDw4SEA0PFBEQDw8SExMNDgwPGBYXDhAUDxATEhIQEA8VDg8QFhILHyAODw0PEA4OExANGBkODw0ODgwNDgwLKCkTEwsLKy4KLTALIyQgHQ0mEhsiDRcYFwsNDgwLDw0OEA0MEQ8NFhURDg4NDwwYDREQEQwMExEMGRgLKiwUFAwLISEdJCUMHR0gLTAWFgsNJSYYICElMTUYHR0vOj4fKCu/v7uytLHc3dkjJyc1Q0xmbGk0MjDIycbQ0s+lp6YqHxA0LQ2ioaFdYWFTWVmEiIro6eNMUVFYPDZ+f4I19pkgAAAAH3RSTlMA2egwAYj8EznzHpvA1Sdry1wqrN+Rd3+zzeHz/kO7pPhESwAAAfdJREFUOMtlk+l2okAQhRsUN9yXJJNkBpoWpSENCgJxRxOTzLz/A001IIvewzn8uF9XVVdXIZSpNZD7YvNF7MuDFrpXV+pQQ1NVBVQTJpUbu/7w/GYTQ9N1JZH4WC8dfzKXMYCvgKK0C0Eqv8wUyH1FERrZefDNpU1vgJqQxqg/mXEAahi4CECWpI4HsLnPSwCpBUKqgj98BjvxNYO6Li3kEXkSyQZR8AGwva3vUJyHmFRRq0NBhPvYMLd/946r5cC4iwaEcBeOY914C/b7wC4AtR6StVSqhjXKHGdJoOHqtY4R6uNEhLmMge85wWazWV0rFZCox1K99/cw/cIojDbpbZuoGf911T8e1+v193cUfR2+jod9mqSGmvEDAhBeDmtgPqJ/h491uMmAawp2cS+fu93nz892Bz+WpYiLBAI7nksdIwiI56r5NQQkz7mwjv0tYz7ZOsQjejY3cM3BwrIsIDQnYI6/8j0ASo1qCRYnMHZdlwXQi5XHrHkcYTqdjofwWIvFghNkafK5eD2dz+eTxV2QDO9dERNAozDVxMCQjxLM3dlMjKfuMQFKwxTbs1k8MKj+JwH0O7+dLlClcxsh8fOxbnTmc/0OEH4XFqON74B2o7R6kliuUZRuFrhamYxrWf/GcqN6t97Vbm8kvJxem8KoN8zt/9hmdL2SVK0iAAAAAElFTkSuQmCC" />
-                <span>Documentation</span>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA4VBMVEVHcEwSDw4SEA0PFBEQDw8SExMNDgwPGBYXDhAUDxATEhIQEA8VDg8QFhILHyAODw0PEA4OExANGBkODw0ODgwNDgwLKCkTEwsLKy4KLTALIyQgHQ0mEhsiDRcYFwsNDgwLDw0OEA0MEQ8NFhURDg4NDwwYDREQEQwMExEMGRgLKiwUFAwLISEdJCUMHR0gLTAWFgsNJSYYICElMTUYHR0vOj4fKCu/v7uytLHc3dkjJyc1Q0xmbGk0MjDIycbQ0s+lp6YqHxA0LQ2ioaFdYWFTWVmEiIro6eNMUVFYPDZ+f4I19pkgAAAAH3RSTlMA2egwAYj8EznzHpvA1Sdry1wqrN+Rd3+zzeHz/kO7pPhESwAAAfdJREFUOMtlk+l2okAQhRsUN9yXJJNkBpoWpSENCgJxRxOTzLz/A001IIvewzn8uF9XVVdXIZSpNZD7YvNF7MuDFrpXV+pQQ1NVBVQTJpUbu/7w/GYTQ9N1JZH4WC8dfzKXMYCvgKK0C0Eqv8wUyH1FERrZefDNpU1vgJqQxqg/mXEAahi4CECWpI4HsLnPSwCpBUKqgj98BjvxNYO6Li3kEXkSyQZR8AGwva3vUJyHmFRRq0NBhPvYMLd/946r5cC4iwaEcBeOY914C/b7wC4AtR6StVSqhjXKHGdJoOHqtY4R6uNEhLmMge85wWazWV0rFZCox1K99/cw/cIojDbpbZuoGf911T8e1+v193cUfR2+jod9mqSGmvEDAhBeDmtgPqJ/h491uMmAawp2cS+fu93nz892Bz+WpYiLBAI7nksdIwiI56r5NQQkz7mwjv0tYz7ZOsQjejY3cM3BwrIsIDQnYI6/8j0ASo1qCRYnMHZdlwXQi5XHrHkcYTqdjofwWIvFghNkafK5eD2dz+eTxV2QDO9dERNAozDVxMCQjxLM3dlMjKfuMQFKwxTbs1k8MKj+JwH0O7+dLlClcxsh8fOxbnTmc/0OEH4XFqON74B2o7R6kliuUZRuFrhamYxrWf/GcqN6t97Vbm8kvJxem8KoN8zt/9hmdL2SVK0iAAAAAElFTkSuQmCC" alt="PrinterMake" class="logo-img">
+                <span>Studio</span>
             </div>
             <nav class="nav">
-                <a class="nav-link active" data-page="home">Home</a>
-                <a class="nav-link" data-page="getting-started">Getting Started</a>
-                <a class="nav-link" data-page="studio">Studio Editor</a>
+                <a class="nav-link active" data-page="overview">Overview</a>
+                <a class="nav-link" data-page="studio">Studio Guide</a>
+                <a class="nav-link" data-page="objects">Objects</a>
+                <a class="nav-link" data-page="properties">Properties</a>
                 <a class="nav-link" data-page="scripting">Scripting</a>
                 <a class="nav-link" data-page="publishing">Publishing</a>
-                <a class="nav-link" data-page="api">API Reference</a>
-                <a class="nav-link" data-page="examples">Examples</a>
+                <a class="nav-link" data-page="tips">Tips & Tricks</a>
             </nav>
         </aside>
 
+        <!-- MAIN CONTENT -->
         <main class="content">
-            <!-- HOME PAGE -->
-            <div id="home" class="page active">
-                <h1>📚 PrinterMake Developer Documentation</h1>
-                <p>Complete guide to building 3D games and experiences with PrinterMake.</p>
+            <!-- OVERVIEW -->
+            <div id="overview" class="page active">
+                <h1>PrinterMake Studio</h1>
+                <p class="subtitle">Professional 3D game and experience editor - Complete developer guide</p>
 
-                <div class="section">
-                    <h2>Welcome</h2>
-                    <p>PrinterMake is a powerful platform for creating, editing, and sharing 3D games. This documentation covers everything you need to know to get started and build amazing experiences.</p>
+                <div class="section-intro">
+                    <p><strong>Welcome to PrinterMake Studio</strong> — A powerful, intuitive 3D editor designed for creating immersive games and interactive experiences. This guide covers every feature in detail to help you master the platform.</p>
                 </div>
 
                 <div class="section">
-                    <h2>Quick Navigation</h2>
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h3>🚀 Getting Started</h3>
-                            <p>Set up PrinterMake, create your first project, and learn the basics.</p>
+                    <h2>What is PrinterMake Studio?</h2>
+                    <p>PrinterMake Studio is a professional-grade 3D development environment that combines:</p>
+                    <ul>
+                        <li><strong>3D Modeling & Scene Building</strong> — Create complex scenes with objects, textures, and lighting</li>
+                        <li><strong>Real-time Preview</strong> — See your game instantly as you build it</li>
+                        <li><strong>Visual & Code Scripting</strong> — Add interactivity without deep programming knowledge or dive into C# for advanced logic</li>
+                        <li><strong>Multiplayer Support</strong> — Build games for friends with built-in networking</li>
+                        <li><strong>One-Click Publishing</strong> — Share your creation with the community instantly</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Studio Interface Overview</h2>
+                    <p>The Studio interface is divided into key sections:</p>
+                    <div class="grid">
+                        <div class="grid-item">
+                            <h4>🎨 Viewport (Center)</h4>
+                            <p>The 3D view where you build and edit your scene. Move, rotate, scale objects, and preview gameplay in real-time.</p>
                         </div>
-                        <div class="feature-card">
-                            <h3>🎨 Studio Editor</h3>
-                            <p>Master the studio editor to build 3D scenes with objects, textures, and effects.</p>
+                        <div class="grid-item">
+                            <h4>📂 Explorer (Left)</h4>
+                            <p>Hierarchical tree view of all objects in your scene. Organize, select, and manage objects easily.</p>
                         </div>
-                        <div class="feature-card">
-                            <h3>⚙️ Scripting</h3>
-                            <p>Learn visual scripting and C# to add interactivity to your games.</p>
+                        <div class="grid-item">
+                            <h4>⚙️ Properties (Right)</h4>
+                            <p>Detailed editor for object properties: transform, appearance, physics, scripts, and more.</p>
                         </div>
-                        <div class="feature-card">
-                            <h3>🎮 Publishing</h3>
-                            <p>Publish your games and share them with the PrinterMake community.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>🔌 API Reference</h3>
-                            <p>Complete API documentation for backend integration.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>💡 Examples</h3>
-                            <p>Real-world examples and tutorials to inspire your creations.</p>
+                        <div class="grid-item">
+                            <h4>🎛️ Menu Bar (Top)</h4>
+                            <p>Access to File operations, Insert objects, View options, and Tools.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2>Key Features</h2>
-                    <ul>
-                        <li><strong>3D Studio Editor</strong> - Full-featured 3D editor with real-time preview</li>
-                        <li><strong>Visual Scripting</strong> - Easy event-action scripting system</li>
-                        <li><strong>C# Support</strong> - Advanced scripting with C# for complex logic</li>
-                        <li><strong>Multiplayer Ready</strong> - Play games with friends in real-time</li>
-                        <li><strong>Texture Support</strong> - Add custom textures to objects</li>
-                        <li><strong>Template System</strong> - Start with pre-made templates or blank canvas</li>
-                        <li><strong>Game Management</strong> - Edit, publish, and manage your games</li>
-                        <li><strong>Community Games</strong> - Discover and play games made by others</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2>Getting Help</h2>
-                    <p>If you get stuck:</p>
-                    <ul>
-                        <li>Check the relevant section in this documentation</li>
-                        <li>Review the examples and tutorials</li>
-                        <li>Check the API reference for specific functions</li>
-                        <li>Visit the community forums for help</li>
-                    </ul>
+                    <h2>Quick Start Path</h2>
+                    <ol>
+                        <li><strong>Create a Project</strong> — Choose a template (Starter Scene or Flat Baseplate)</li>
+                        <li><strong>Explore the Layout</strong> — Familiarize yourself with the four main panels</li>
+                        <li><strong>Add Objects</strong> — Use Insert menu to add 3D shapes</li>
+                        <li><strong>Customize Properties</strong> — Change colors, materials, and positions</li>
+                        <li><strong>Add Interactivity</strong> — Use visual scripts or C# for gameplay logic</li>
+                        <li><strong>Test Your Game</strong> — Click Play to enter gameplay mode</li>
+                        <li><strong>Publish</strong> — Share with the world</li>
+                    </ol>
                 </div>
             </div>
 
-            <!-- GETTING STARTED PAGE -->
-            <div id="getting-started" class="page">
-                <h1>🚀 Getting Started</h1>
+            <!-- STUDIO DETAILED GUIDE -->
+            <div id="studio" class="page">
+                <h1>Studio Editor - Complete Guide</h1>
+                <p class="subtitle">Master every aspect of the PrinterMake Studio interface and workflows</p>
 
                 <div class="section">
-                    <h2>Installation</h2>
-                    <ol>
-                        <li>Download the PrinterMake installer from the website</li>
-                        <li>Run the installer and follow the setup wizard</li>
-                        <li>Create a PrinterMake account or sign in with Google</li>
-                        <li>Launch the app!</li>
-                    </ol>
+                    <h2>The Four Panels Explained</h2>
+
+                    <h3>1. Viewport (Center Panel)</h3>
+                    <p>The main 3D view where all the magic happens. This is your canvas for building.</p>
+
+                    <h4>Viewport Controls</h4>
+                    <ul>
+                        <li><strong>Middle Mouse Drag</strong> — Rotate view around scene</li>
+                        <li><strong>Mouse Wheel</strong> — Zoom in/out</li>
+                        <li><strong>Right Click + Drag</strong> — Pan camera</li>
+                        <li><strong>Click on Objects</strong> — Select object (highlighted with outline)</li>
+                        <li><strong>Spacebar</strong> — Frame selected object in view</li>
+                    </ul>
+
+                    <div class="callout callout-tip">
+                        <strong>Pro Tip:</strong> Use the grid background to judge distances and alignments. Press V to toggle the grid visibility.
+                    </div>
+
+                    <h3>2. Explorer Panel (Left)</h3>
+                    <p>Shows your scene's object hierarchy. Organize your scene structure here.</p>
+
+                    <h4>Explorer Features</h4>
+                    <ul>
+                        <li><strong>Expand/Collapse</strong> — Click arrow to show child objects</li>
+                        <li><strong>Select Objects</strong> — Click name to select in viewport</li>
+                        <li><strong>Right-Click Menu</strong> — Delete, duplicate, or rename objects</li>
+                        <li><strong>Drag to Reorder</strong> — Parent objects by dragging</li>
+                        <li><strong>Eye Icon</strong> — Toggle object visibility</li>
+                        <li><strong>Lock Icon</strong> — Prevent accidental movement</li>
+                    </ul>
+
+                    <h3>3. Properties Panel (Right)</h3>
+                    <p>The most important panel. Here you configure everything about your selected object.</p>
+
+                    <h4>Property Sections</h4>
+                    <div class="card">
+                        <div class="card-title">Transform</div>
+                        <div class="card-desc">Position, rotation, and scale of the object</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Appearance</div>
+                        <div class="card-desc">Color, material type, texture, and visual effects</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Physics</div>
+                        <div class="card-desc">Collision, gravity, and movement properties</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Script</div>
+                        <div class="card-desc">Add visual or C# scripts for interactivity</div>
+                    </div>
+
+                    <h3>4. Top Menu Bar</h3>
+                    <p>Access all commands and tools from here.</p>
+
+                    <div class="grid">
+                        <div class="grid-item">
+                            <h4>File</h4>
+                            <ul style="margin: 8px 0 0 0; font-size: 13px;">
+                                <li>New Project</li>
+                                <li>Open Project</li>
+                                <li>Save</li>
+                                <li>Export .prmk</li>
+                                <li>Import .prmk</li>
+                            </ul>
+                        </div>
+
+                        <div class="grid-item">
+                            <h4>Insert</h4>
+                            <ul style="margin: 8px 0 0 0; font-size: 13px;">
+                                <li>Box, Sphere, Cylinder</li>
+                                <li>SpawnPoint</li>
+                                <li>Mirror</li>
+                                <li>Light</li>
+                            </ul>
+                        </div>
+
+                        <div class="grid-item">
+                            <h4>View</h4>
+                            <ul style="margin: 8px 0 0 0; font-size: 13px;">
+                                <li>Show Grid</li>
+                                <li>Reset Camera</li>
+                                <li>Full Screen</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="section">
-                    <h2>Your First Game</h2>
+                    <h2>Transforming Objects</h2>
+
+                    <p>The Transform section is how you position, rotate, and scale objects.</p>
+
                     <div class="step">
-                        <h3>Step 1: Create a New Project</h3>
-                        <p>Click the <strong>Create</strong> tab to start a new project. You'll be prompted to choose a template:</p>
+                        <div class="step-number">1</div>
+                        <h4>Position (X, Y, Z)</h4>
+                        <p>Controls where the object is in 3D space. Measured in units.</p>
                         <ul>
-                            <li><strong>Starter Scene</strong> - Comes with example objects and scripts to learn from</li>
-                            <li><strong>Flat Baseplate</strong> - Blank canvas for building from scratch</li>
+                            <li><strong>X-Axis</strong> — Left/Right movement</li>
+                            <li><strong>Y-Axis</strong> — Up/Down movement</li>
+                            <li><strong>Z-Axis</strong> — Forward/Backward movement</li>
                         </ul>
                     </div>
 
                     <div class="step">
-                        <h3>Step 2: Explore the Editor</h3>
-                        <p>The Studio Editor has three main areas:</p>
+                        <div class="step-number">2</div>
+                        <h4>Rotation (X, Y, Z)</h4>
+                        <p>How much the object is rotated on each axis. In degrees (0-360).</p>
                         <ul>
-                            <li><strong>Left Panel</strong> - Explorer tree showing all objects in your scene</li>
-                            <li><strong>Center</strong> - 3D viewport where you build your game</li>
-                            <li><strong>Right Panel</strong> - Properties and scripting controls</li>
+                            <li><strong>X Rotation</strong> — Pitch (tip forward/back)</li>
+                            <li><strong>Y Rotation</strong> — Yaw (spin left/right)</li>
+                            <li><strong>Z Rotation</strong> — Roll (tilt side-to-side)</li>
                         </ul>
                     </div>
 
                     <div class="step">
-                        <h3>Step 3: Add Objects</h3>
-                        <p>Use the <strong>Insert</strong> menu to add objects:</p>
+                        <div class="step-number">3</div>
+                        <h4>Scale</h4>
+                        <p>Uniform or per-axis scaling. 1.0 = normal size, 2.0 = double size.</p>
                         <ul>
-                            <li>Box, Sphere, Cylinder (basic shapes)</li>
-                            <li>Mirror, SpawnPoint (special objects)</li>
+                            <li><strong>Uniform</strong> — Scale equally on all axes</li>
+                            <li><strong>Per-Axis</strong> — Scale X, Y, Z independently</li>
                         </ul>
                     </div>
 
-                    <div class="step">
-                        <h3>Step 4: Add Interactivity</h3>
-                        <p>Select an object and go to the <strong>Script</strong> tab in the properties panel to add:</p>
-                        <ul>
-                            <li>Visual scripts (event-action system)</li>
-                            <li>C# scripts (advanced programming)</li>
-                        </ul>
-                    </div>
-
-                    <div class="step">
-                        <h3>Step 5: Test Your Game</h3>
-                        <p>Click the <strong>Play</strong> button (▶) to test your game. Use:</p>
-                        <ul>
-                            <li><strong>WASD</strong> - Move around</li>
-                            <li><strong>Mouse Wheel</strong> - Zoom (third-person to first-person)</li>
-                            <li><strong>Right Click + Drag</strong> - Rotate camera (third-person only)</li>
-                            <li><strong>E Key</strong> - Interact with objects</li>
-                            <li><strong>Space</strong> - Jump</li>
-                        </ul>
+                    <div class="callout callout-warning">
+                        <strong>Note:</strong> Very large or very small scales (< 0.1 or > 100) can cause physics issues. Keep scales reasonable.
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2>Controls Reference</h2>
+                    <h2>Materials & Appearance</h2>
+
+                    <h3>Colors</h3>
+                    <p>Click the color box to open the color picker. Adjust hue, saturation, and brightness.</p>
+
+                    <h3>Material Types</h3>
                     <table>
                         <thead>
                             <tr>
-                                <th>Control</th>
-                                <th>Action</th>
+                                <th>Material</th>
+                                <th>Description</th>
+                                <th>Use Case</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><code>W / A / S / D</code></td>
-                                <td>Move forward / left / back / right</td>
+                                <td><strong>Plastic</strong></td>
+                                <td>Shiny, smooth surface with subtle reflections</td>
+                                <td>Furniture, tech items, clean surfaces</td>
                             </tr>
                             <tr>
-                                <td><code>Space</code></td>
-                                <td>Jump</td>
+                                <td><strong>Metal</strong></td>
+                                <td>Reflective, metallic appearance</td>
+                                <td>Machinery, robots, industrial objects</td>
                             </tr>
                             <tr>
-                                <td><code>Shift</code></td>
-                                <td>Sprint (hold while moving)</td>
+                                <td><strong>Wood</strong></td>
+                                <td>Warm, slightly textured matte</td>
+                                <td>Structures, platforms, natural elements</td>
                             </tr>
                             <tr>
-                                <td><code>Mouse Wheel</code></td>
-                                <td>Zoom camera in/out</td>
+                                <td><strong>Stone</strong></td>
+                                <td>Rough, dull texture</td>
+                                <td>Terrain, bricks, rocks, paths</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Textures</h3>
+                    <p>Upload custom images to cover object surfaces with detailed patterns.</p>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <p>Select an object in the Viewport or Explorer</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <p>In Properties → Appearance section, click <strong>"Upload Texture"</strong></p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <p>Choose an image file (PNG, JPG, etc.) from your computer</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <p>Texture preview appears below button</p>
+                    </div>
+
+                    <div class="callout callout-tip">
+                        <strong>Texture Tips:</strong>
+                        <ul>
+                            <li>Use 1024x1024 or smaller for best performance</li>
+                            <li>PNG for transparency, JPG for solid images</li>
+                            <li>Seamless/tileable textures work best</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Physics Configuration</h2>
+
+                    <h3>Collision</h3>
+                    <ul>
+                        <li><strong>On</strong> — Object blocks other objects and players</li>
+                        <li><strong>Off</strong> — Object is transparent to physics (can walk through)</li>
+                        <li><strong>Trigger</strong> — No collision but fires script events when touched</li>
+                    </ul>
+
+                    <h3>Gravity</h3>
+                    <ul>
+                        <li><strong>Static</strong> — Never falls (floor, walls, ceiling)</li>
+                        <li><strong>Dynamic</strong> — Falls due to gravity (moveable objects)</li>
+                    </ul>
+
+                    <h3>Density</h3>
+                    <p>How heavy the object is. Higher = heavier. Affects falling speed and collisions.</p>
+                </div>
+            </div>
+
+            <!-- OBJECTS PAGE -->
+            <div id="objects" class="page">
+                <h1>Objects & Objects Types</h1>
+                <p class="subtitle">Complete reference for all available objects in PrinterMake Studio</p>
+
+                <div class="section">
+                    <h2>Basic Shapes</h2>
+
+                    <h3>Box</h3>
+                    <p>A rectangular 3D shape. Most versatile object for building.</p>
+                    <ul>
+                        <li>Perfect for walls, platforms, buildings</li>
+                        <li>Can be scaled on individual axes for rectangles</li>
+                        <li>Supports all material types and textures</li>
+                    </ul>
+
+                    <h3>Sphere</h3>
+                    <p>A perfect ball-shaped object.</p>
+                    <ul>
+                        <li>Great for decorative elements, collectibles</li>
+                        <li>Use for obstacles, targets, interactive elements</li>
+                        <li>Spheres work great with physics</li>
+                    </ul>
+
+                    <h3>Cylinder</h3>
+                    <p>A pillar-shaped object with circular top and bottom.</p>
+                    <ul>
+                        <li>Use for poles, posts, pillars</li>
+                        <li>Scale height to make thin or tall</li>
+                        <li>Rotate for creative structures</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Special Objects</h2>
+
+                    <h3>SpawnPoint</h3>
+                    <p>Defines where players appear when they join your game.</p>
+                    <ul>
+                        <li>Appears as a small colored cube in the editor</li>
+                        <li>Every game must have at least one SpawnPoint</li>
+                        <li>Multiple SpawnPoints = players spawn at random one</li>
+                        <li>Adjust Y position to prevent players spawning inside objects</li>
+                    </ul>
+
+                    <div class="callout callout-warning">
+                        <strong>Important:</strong> If you don't have a SpawnPoint, players cannot join your game!
+                    </div>
+
+                    <h3>Mirror</h3>
+                    <p>A reflective surface that players can see themselves in.</p>
+                    <ul>
+                        <li>Great for immersion and realism</li>
+                        <li>Use in bathrooms, bedrooms, hallways</li>
+                        <li>Scale like boxes to fit any space</li>
+                    </ul>
+
+                    <h3>Light</h3>
+                    <p>Illuminate your scene with dynamic lighting.</p>
+                    <ul>
+                        <li>Point lights shine in all directions</li>
+                        <li>Adjust brightness and color</li>
+                        <li>Use for atmosphere and highlighting areas</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Best Practices for Object Layout</h2>
+
+                    <ul>
+                        <li><strong>Use organized naming</strong> — Name objects clearly (Floor, Wall_Left, Door_01)</li>
+                        <li><strong>Parent related objects</strong> — Group doors, walls, furniture together</li>
+                        <li><strong>Lock static objects</strong> — Prevent accidental movement</li>
+                        <li><strong>Use layers wisely</strong> — Separate gameplay elements from decoration</li>
+                        <li><strong>Keep objects aligned</strong> — Use grid snapping for clean layouts</li>
+                        <li><strong>Avoid overlapping collision</strong> — Objects shouldn't intersect</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PROPERTIES PAGE -->
+            <div id="properties" class="page">
+                <h1>Object Properties Deep Dive</h1>
+                <p class="subtitle">Complete reference for every property and setting</p>
+
+                <div class="section">
+                    <h2>Transform Properties</h2>
+
+                    <div class="card">
+                        <div class="card-title">Position X, Y, Z</div>
+                        <div class="card-desc">Object location in 3D space. Can be negative values.</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Rotation X, Y, Z</div>
+                        <div class="card-desc">Object orientation in degrees. 0-360 for each axis.</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Scale X, Y, Z</div>
+                        <div class="card-desc">Object size multiplier. 1.0 is default, 0.5 is half size, 2.0 is double.</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Appearance Properties</h2>
+
+                    <div class="card">
+                        <div class="card-title">Color</div>
+                        <div class="card-desc">RGB or HSV color picker. Click swatch to open picker.</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Material</div>
+                        <div class="card-desc">Plastic, Metal, Wood, Stone. Affects how light reflects.</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Texture</div>
+                        <div class="card-desc">Upload image file to cover surface. Shows preview.</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Transparency</div>
+                        <div class="card-desc">0 = fully opaque, 100 = fully transparent (ghost).</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Physics Properties</h2>
+
+                    <div class="card">
+                        <div class="card-title">Collision Type</div>
+                        <div class="card-desc">On (solid), Off (transparent), or Trigger (fires events).</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Gravity Type</div>
+                        <div class="card-desc">Static (fixed) or Dynamic (affected by gravity).</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Density</div>
+                        <div class="card-desc">1-10 scale. Affects weight and fall speed.</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Friction</div>
+                        <div class="card-desc">0-1. Higher = more slippery. Use 0.5 for default.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCRIPTING PAGE -->
+            <div id="scripting" class="page">
+                <h1>Scripting & Interactivity</h1>
+                <p class="subtitle">Add behavior to your objects with visual or C# scripts</p>
+
+                <div class="section">
+                    <h2>Two Scripting Systems</h2>
+
+                    <div class="grid">
+                        <div class="grid-item">
+                            <h4>Visual Scripting</h4>
+                            <p>Event-based system. No coding knowledge required. Perfect for simple interactions.</p>
+                            <p style="margin-top: 12px; font-size: 13px; color: var(--text-tertiary);">Drag events → actions → done</p>
+                        </div>
+
+                        <div class="grid-item">
+                            <h4>C# Scripting</h4>
+                            <p>Full programming language. Create complex game logic. Requires programming knowledge.</p>
+                            <p style="margin-top: 12px; font-size: 13px; color: var(--text-tertiary);">Full control, unlimited power</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Visual Scripts</h2>
+
+                    <p>Select object → Properties → Script → "+ Visual Script"</p>
+
+                    <h3>Events</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Triggers When</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>onTouch</strong></td>
+                                <td>Player touches the object</td>
+                                <td>Collectible item disappears</td>
                             </tr>
                             <tr>
-                                <td><code>Right Click + Drag</code></td>
-                                <td>Rotate camera (third-person)</td>
+                                <td><strong>onClick</strong></td>
+                                <td>Player clicks on object</td>
+                                <td>Door opens when clicked</td>
                             </tr>
                             <tr>
-                                <td><code>E</code></td>
-                                <td>Interact with nearby objects</td>
+                                <td><strong>onTimer</strong></td>
+                                <td>After specified seconds</td>
+                                <td>Platform appears after 3 seconds</td>
+                            </tr>
+                            <tr>
+                                <td><strong>onStart</strong></td>
+                                <td>When game starts</td>
+                                <td>Play welcome message</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Actions</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>What It Does</th>
+                                <th>Parameters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Move</strong></td>
+                                <td>Change object position</td>
+                                <td>X, Y, Z coordinates</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rotate</strong></td>
+                                <td>Rotate object</td>
+                                <td>Rotation angles</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Color</strong></td>
+                                <td>Change object color</td>
+                                <td>RGB values</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Destroy</strong></td>
+                                <td>Delete object</td>
+                                <td>None</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Message</strong></td>
+                                <td>Display text message</td>
+                                <td>Text string</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="section">
-                    <h2>UI Overview</h2>
-                    <div class="code-block">
-                        <strong>Main Menu Tabs:</strong><br/>
-                        • <strong>Home</strong> - See friends and available games<br/>
-                        • <strong>Create</strong> - Start new projects or edit existing ones<br/>
-                        • <strong>Social</strong> - Friend requests and direct messaging<br/>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2>Tips for Beginners</h2>
-                    <ul>
-                        <li>Start with the Starter Scene template to see examples</li>
-                        <li>Lock objects you don't want to accidentally move by checking the "Locked" checkbox</li>
-                        <li>Use the right-click context menu in the Explorer to quickly delete objects</li>
-                        <li>Test your game frequently during development</li>
-                        <li>Add textures to make your game look more polished</li>
-                        <li>Check out the Examples section for inspiration</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- STUDIO PAGE -->
-            <div id="studio" class="page">
-                <h1>🎨 Studio Editor</h1>
-                <p>The PrinterMake Studio is a full-featured 3D editor for creating games and experiences.</p>
-
-                <div class="section">
-                    <h2>Editor Layout</h2>
-                    <p>The editor is divided into three main panels:</p>
-                    <ul>
-                        <li><strong>Explorer (Left)</strong> - Hierarchical tree of all objects in your scene</li>
-                        <li><strong>Viewport (Center)</strong> - 3D view where you build and interact with objects</li>
-                        <li><strong>Properties (Right)</strong> - Edit properties, appearance, scripts for selected object</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2>Adding Objects</h2>
-                    <p>Use the Insert menu to add 3D objects:</p>
-                    <div class="code-block">
-                        <strong>Basic Shapes:</strong><br/>
-                        • Box - 3D rectangular shape<br/>
-                        • Sphere - 3D round object<br/>
-                        • Cylinder - 3D cylindrical shape<br/>
-                        <br/>
-                        <strong>Special Objects:</strong><br/>
-                        • SpawnPoint - Where players appear when joining<br/>
-                        • Mirror - Reflective surface<br/>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2>Properties Panel</h2>
-                    <p>The Properties panel lets you control:</p>
-                    <ul>
-                        <li><strong>Transform</strong> - Position, rotation, scale</li>
-                        <li><strong>Appearance</strong> - Color, material, textures</li>
-                        <li><strong>Physics</strong> - Collision, gravity</li>
-                        <li><strong>Scripts</strong> - Add interactivity</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2>Textures</h2>
-                    <p>Add custom textures to objects to make them look more realistic:</p>
-                    <ol>
-                        <li>Select an object in the Explorer</li>
-                        <li>Go to Properties → Appearance → Texture</li>
-                        <li>Click "Upload Texture"</li>
-                        <li>Choose an image file (PNG, JPG, etc.)</li>
-                        <li>The texture will be applied to the object</li>
-                    </ol>
-                </div>
-
-                <div class="section">
-                    <h2>Right-Click Context Menu</h2>
-                    <p>Right-click on objects in the Explorer for quick actions:</p>
-                    <ul>
-                        <li><strong>Delete</strong> - Remove the object from the scene</li>
-                        <li><strong>Duplicate</strong> - Create a copy</li>
-                        <li><strong>Rename</strong> - Change the object name</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- SCRIPTING PAGE -->
-            <div id="scripting" class="page">
-                <h1>⚙️ Scripting</h1>
-                <p>Make your games interactive with visual scripts or C# programming.</p>
-
-                <div class="section">
-                    <h2>Visual Scripting</h2>
-                    <p>Visual scripting uses an event-action system that's easy to learn:</p>
-                    <div class="code-block">
-                        <strong>Events:</strong><br/>
-                        • onTouch - When the object is touched<br/>
-                        • onPress - When clicked<br/>
-                        • onTimer - After a time delay<br/>
-                        • onChat - When a chat message is received<br/>
-                        • onStart - When the game starts<br/>
-                    </div>
-                    <div class="code-block">
-                        <strong>Actions:</strong><br/>
-                        • message - Send a message<br/>
-                        • move - Change position<br/>
-                        • rotate - Change rotation<br/>
-                        • toggle - Turn on/off<br/>
-                        • destroy - Delete the object<br/>
-                        • teleport - Move to a location<br/>
-                        • color - Change color<br/>
-                    </div>
-                </div>
-
-                <div class="section">
                     <h2>C# Scripting</h2>
-                    <p>For advanced developers, use C# to create complex game logic:</p>
+
+                    <p>Select object → Properties → Script → "⚙ C# Script"</p>
+
+                    <h3>Basic Template</h3>
                     <pre><code>public class MyScript : GameBehavior {
     public void Start() {
+        // Called when game starts
         Debug.Log("Game started!");
     }
 
     public void Update() {
+        // Called every frame
         if (Input.GetKeyDown("w")) {
-            this.transform.position += Vector3.forward;
+            this.transform.position.z += 0.1f;
         }
     }
 }</code></pre>
-                </div>
 
-                <div class="section">
-                    <h2>Available APIs</h2>
-                    <p>C# scripts have access to these classes:</p>
+                    <h3>Available APIs</h3>
                     <ul>
-                        <li><strong>GameObject</strong> - Represents objects in your scene</li>
-                        <li><strong>Transform</strong> - Position, rotation, scale</li>
-                        <li><strong>Vector3</strong> - 3D coordinates</li>
-                        <li><strong>Input</strong> - Keyboard and mouse input</li>
-                        <li><strong>Time</strong> - Frame rate and delta time</li>
-                        <li><strong>Debug</strong> - Logging and debugging</li>
+                        <li><strong>GameObject</strong> — Current object</li>
+                        <li><strong>Transform</strong> — Position, rotation, scale</li>
+                        <li><strong>Vector3</strong> — 3D coordinates</li>
+                        <li><strong>Input</strong> — Keyboard input</li>
+                        <li><strong>Time</strong> — Frame timing</li>
+                        <li><strong>Debug</strong> — Logging</li>
                     </ul>
-                </div>
-
-                <div class="section">
-                    <h2>Creating a Script</h2>
-                    <ol>
-                        <li>Select an object in the Explorer</li>
-                        <li>Go to Properties → Script tab</li>
-                        <li>Choose "+ Visual Script" or "⚙ C# Script"</li>
-                        <li>For Visual: Set the event and action</li>
-                        <li>For C#: Write your code in the editor</li>
-                        <li>Click "Save & Apply"</li>
-                    </ol>
                 </div>
             </div>
 
             <!-- PUBLISHING PAGE -->
             <div id="publishing" class="page">
-                <h1>🎮 Publishing</h1>
-                <p>Share your games with the PrinterMake community.</p>
+                <h1>Publishing Your Game</h1>
+                <p class="subtitle">Share your creation with the PrinterMake community</p>
 
                 <div class="section">
-                    <h2>Before Publishing</h2>
-                    <p>Make sure your game is ready:</p>
-                    <ul>
-                        <li>Test the game thoroughly in Play mode</li>
-                        <li>Ensure there's a SpawnPoint for players</li>
-                        <li>Add textures and polish visuals</li>
-                        <li>Create a catchy title and description</li>
-                        <li>Choose a thumbnail image</li>
-                    </ul>
+                    <h2>Pre-Publishing Checklist</h2>
+
+                    <div class="step">
+                        <div class="step-number">✓</div>
+                        <h4>SpawnPoint Added</h4>
+                        <p>Every game needs at least one SpawnPoint where players appear.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">✓</div>
+                        <h4>Tested Gameplay</h4>
+                        <p>Click Play and test your game. Fix any bugs before publishing.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">✓</div>
+                        <h4>No Overlapping Objects</h4>
+                        <p>Ensure collision objects don't intersect at start.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">✓</div>
+                        <h4>Prepared Details</h4>
+                        <p>Have a title, description, and thumbnail image ready.</p>
+                    </div>
                 </div>
 
                 <div class="section">
                     <h2>Publishing Steps</h2>
+
                     <div class="step">
-                        <h3>Step 1: Open Publish Menu</h3>
-                        <p>Go to File → Publish Game</p>
+                        <div class="step-number">1</div>
+                        <h4>File → Publish Game</h4>
+                        <p>Opens the publish dialog.</p>
                     </div>
 
                     <div class="step">
-                        <h3>Step 2: Set Game Details</h3>
-                        <p>Fill in:</p>
+                        <div class="step-number">2</div>
+                        <h4>Enter Game Details</h4>
                         <ul>
-                            <li>Game Title</li>
-                            <li>Description (what is your game about?)</li>
-                            <li>Thumbnail Image</li>
+                            <li><strong>Title</strong> — Catchy, descriptive name</li>
+                            <li><strong>Description</strong> — What is your game about? (max 300 chars)</li>
+                            <li><strong>Thumbnail</strong> — Eye-catching image (1024x768 recommended)</li>
                         </ul>
                     </div>
 
                     <div class="step">
-                        <h3>Step 3: Review & Publish</h3>
-                        <p>Click "Publish" to make your game live!</p>
+                        <div class="step-number">3</div>
+                        <h4>Review</h4>
+                        <p>Check all details are correct.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Click "Publish"</h4>
+                        <p>Your game is now live and discoverable!</p>
                     </div>
                 </div>
 
                 <div class="section">
                     <h2>Managing Published Games</h2>
+
                     <p>After publishing, you can:</p>
                     <ul>
-                        <li><strong>Edit Details</strong> - Change title, description, thumbnail</li>
-                        <li><strong>Edit Game</strong> - Make changes to the game and re-publish</li>
-                        <li><strong>Delete</strong> - Remove from the community</li>
-                        <li><strong>View Stats</strong> - See how many players have played</li>
+                        <li><strong>Edit Details</strong> — Update title, description, thumbnail</li>
+                        <li><strong>Update Game</strong> — Make changes and re-publish</li>
+                        <li><strong>View Stats</strong> — See play count and feedback</li>
+                        <li><strong>Unpublish</strong> — Hide from community</li>
+                        <li><strong>Delete</strong> — Permanently remove</li>
                     </ul>
                 </div>
 
                 <div class="section">
-                    <h2>Export & Import</h2>
-                    <p>PrinterMake uses the custom .prmk format for games:</p>
+                    <h2>Export & Import Projects</h2>
+
+                    <h3>Export as .prmk</h3>
+                    <p>Save your project locally as a PrinterMake file.</p>
                     <ul>
-                        <li><strong>Export</strong> - File → Export PrinterMake (.prmk) to save locally</li>
-                        <li><strong>Import</strong> - File → Import PrinterMake (.prmk) to load a saved game</li>
+                        <li>File → Export PrinterMake (.prmk)</li>
+                        <li>Includes all objects, scripts, textures</li>
+                        <li>Back up your work regularly</li>
+                    </ul>
+
+                    <h3>Import .prmk</h3>
+                    <p>Load a previously saved project or collaborate with others.</p>
+                    <ul>
+                        <li>File → Import PrinterMake (.prmk)</li>
+                        <li>Select file from your computer</li>
+                        <li>Project loads with all assets intact</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- API PAGE -->
-            <div id="api" class="page">
-                <h1>🔌 API Reference</h1>
-                <p>Complete API documentation for PrinterMake backend and scripting.</p>
+            <!-- TIPS & TRICKS -->
+            <div id="tips" class="page">
+                <h1>Tips, Tricks & Best Practices</h1>
+                <p class="subtitle">Level up your game development skills</p>
 
                 <div class="section">
-                    <h2>Game API Endpoints</h2>
-                    <pre><code>GET  /api/games              - List all published games
-GET  /api/games/:id          - Get game details
-POST /api/games/publish      - Publish a new game
-PUT  /api/games/:id/update   - Update game details
-DELETE /api/games/:id/delete - Delete a game</code></pre>
-                </div>
+                    <h2>Performance Optimization</h2>
 
-                <div class="section">
-                    <h2>Session API</h2>
-                    <pre><code>POST /api/sessions/join           - Join a game session
-POST /api/sessions/:id/leave      - Leave a session
-POST /api/sessions/:id/chat       - Send chat message
-GET  /api/sessions/active         - Get active sessions</code></pre>
-                </div>
-
-                <div class="section">
-                    <h2>User API</h2>
-                    <pre><code>GET  /api/users/:id              - Get user profile
-POST /api/users/friends/add       - Send friend request
-POST /api/users/friends/accept    - Accept friend request
-POST /api/users/friends/remove    - Remove friend
-GET  /api/users/:id/friends       - List user's friends</code></pre>
-                </div>
-
-                <div class="section">
-                    <h2>Authentication</h2>
-                    <p>All API requests require a Bearer token in the Authorization header:</p>
-                    <pre><code>Authorization: Bearer YOUR_TOKEN_HERE</code></pre>
-                    <p>Tokens are obtained through Clerk authentication and are valid for 1 hour.</p>
-                </div>
-            </div>
-
-            <!-- EXAMPLES PAGE -->
-            <div id="examples" class="page">
-                <h1>💡 Examples</h1>
-                <p>Learn by example with these common game patterns.</p>
-
-                <div class="section">
-                    <h2>Example 1: Door System</h2>
-                    <p>Create a door that opens when touched:</p>
-                    <div class="code-block">
-                        1. Create a Box for the door<br/>
-                        2. Add Visual Script: Event = onTouch, Action = move<br/>
-                        3. Set move target to slide door open<br/>
-                        4. Players can now open doors by touching them!
+                    <div class="callout callout-tip">
+                        <strong>Optimize for Performance:</strong>
+                        <ul>
+                            <li>Avoid more than 500 objects in one scene</li>
+                            <li>Use simpler materials instead of complex textures</li>
+                            <li>Disable physics on non-interactive objects</li>
+                            <li>Hide distant objects when not needed</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2>Example 2: Collectible Items</h2>
-                    <p>Create items players can collect:</p>
-                    <div class="code-block">
-                        1. Create a Sphere for the item<br/>
-                        2. Add Visual Script: Event = onTouch, Action = destroy<br/>
-                        3. Also add: Action = message with "+1 Point"<br/>
-                        4. Items disappear when collected!
-                    </div>
-                </div>
+                    <h2>Design Patterns</h2>
 
-                <div class="section">
-                    <h2>Example 3: Timed Events</h2>
-                    <p>Create events that happen after a delay:</p>
-                    <pre><code>public class TimedEvent : GameBehavior {
-    public void Start() {
-        Time.delay = 3.0f; // 3 seconds
-        this.DoSomething();
-    }
-
-    public void DoSomething() {
-        Debug.Log("3 seconds have passed!");
-        this.gameObject.SetActive(false);
-    }
-}</code></pre>
-                </div>
-
-                <div class="section">
-                    <h2>Example 4: Player Movement Script</h2>
-                    <pre><code>public class PlayerController : GameBehavior {
-    public float moveSpeed = 5.0f;
-
-    public void Update() {
-        Vector3 input = new Vector3(
-            Input.GetAxis("horizontal"),
-            0,
-            Input.GetAxis("vertical")
-        );
-
-        this.transform.position += input * moveSpeed * Time.deltaTime;
-    }
-}</code></pre>
-                </div>
-
-                <div class="section">
-                    <h2>Featured Community Games</h2>
-                    <p>Check out these great games made by the community:</p>
+                    <h3>Open Levels</h3>
+                    <p>Large, explorable spaces with multiple areas to discover.</p>
                     <ul>
-                        <li><strong>Parkour Paradise</strong> - Navigate through obstacles</li>
-                        <li><strong>Treasure Hunt</strong> - Find hidden items</li>
-                        <li><strong>Racing Game</strong> - Compete with friends</li>
-                        <li><strong>Puzzle Solver</strong> - Solve environmental puzzles</li>
+                        <li>Use visual guides (lights, colors, height) to direct players</li>
+                        <li>Create natural paths and landmarks</li>
+                        <li>Hidden secrets reward exploration</li>
                     </ul>
+
+                    <h3>Puzzle Rooms</h3>
+                    <p>Spaces with specific goals to solve or achievements to unlock.</p>
+                    <ul>
+                        <li>Provide clear feedback when actions succeed</li>
+                        <li>Use visual hints (glowing objects, highlighted areas)</li>
+                        <li>Make solutions rewarding but not obvious</li>
+                    </ul>
+
+                    <h3>Combat/Challenge Spaces</h3>
+                    <p>Arenas where players test skills and compete.</p>
+                    <ul>
+                        <li>Clear boundaries and hazards</li>
+                        <li>Balanced difficulty</li>
+                        <li>Spawn points away from danger</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Common Mistakes to Avoid</h2>
+
+                    <div class="callout callout-warning">
+                        <strong>❌ No SpawnPoint</strong> — Players can't join. Always add at least one!
+                    </div>
+
+                    <div class="callout callout-warning">
+                        <strong>❌ Objects Overlapping</strong> — Causes physics bugs. Check all collisions.
+                    </div>
+
+                    <div class="callout callout-warning">
+                        <strong>❌ Forgetting to Test</strong> — Always play your game before publishing.
+                    </div>
+
+                    <div class="callout callout-warning">
+                        <strong>❌ Unbalanced Difficulty</strong> — Too easy = boring, too hard = frustrating.
+                    </div>
+
+                    <div class="callout callout-warning">
+                        <strong>❌ Poor Camera Angles</strong> — Ensure players can see what they need.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Advanced Techniques</h2>
+
+                    <h3>Layering & Depth</h3>
+                    <p>Create visual depth by layering objects at different distances.</p>
+
+                    <h3>Lighting for Atmosphere</h3>
+                    <p>Use lights strategically to create mood and guide players.</p>
+
+                    <h3>Scripted Events</h3>
+                    <p>Chain visual scripts together for complex interactions.</p>
+
+                    <h3>Performance Profiling</h3>
+                    <p>Monitor frame rate and object count during play.</p>
+                </div>
+
+                <div class="section">
+                    <h2>Resources & Community</h2>
+
+                    <ul>
+                        <li>Check community games for inspiration</li>
+                        <li>Study how popular creators build their scenes</li>
+                        <li>Join the PrinterMake community forums</li>
+                        <li>Share your work and get feedback</li>
+                        <li>Collaborate with other creators</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Keyboard Shortcuts</h2>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Shortcut</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Ctrl+S</code></td>
+                                <td>Save project</td>
+                            </tr>
+                            <tr>
+                                <td><code>Ctrl+Z</code></td>
+                                <td>Undo</td>
+                            </tr>
+                            <tr>
+                                <td><code>Ctrl+Y</code></td>
+                                <td>Redo</td>
+                            </tr>
+                            <tr>
+                                <td><code>Delete</code></td>
+                                <td>Delete selected object</td>
+                            </tr>
+                            <tr>
+                                <td><code>Space</code></td>
+                                <td>Frame selected object</td>
+                            </tr>
+                            <tr>
+                                <td><code>V</code></td>
+                                <td>Toggle grid</td>
+                            </tr>
+                            <tr>
+                                <td><code>G</code></td>
+                                <td>Snap to grid</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
     </div>
 
     <script>
-        // Navigation functionality
+        // Navigation
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Remove active class from all links and pages
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
                 
-                // Add active class to clicked link and corresponding page
                 this.classList.add('active');
                 const pageId = this.getAttribute('data-page');
                 document.getElementById(pageId).classList.add('active');
+                
+                // Scroll to top
+                document.querySelector('.content').scrollTop = 0;
             });
         });
     </script>
